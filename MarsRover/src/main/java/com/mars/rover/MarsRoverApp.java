@@ -51,7 +51,8 @@ public class MarsRoverApp {
     }
 
     private static void moveRover() {
-        out.print("Enter Id of rover: ");
+        out.println("\nMoving rover");
+        out.print("Enter id of rover: ");
         String id = scanner.nextLine();
         out.print("Enter your command: ");
         String command = scanner.nextLine();
@@ -59,19 +60,20 @@ public class MarsRoverApp {
             Rover rover = commandCentre.executeCommand(Long.valueOf(id), command);
             printRoverLocation(rover);
         } catch (Exception ex) {
-            out.println("\nCannot move rover, " + ex.getMessage());
+            out.println("\nCannot move rover due to: " + ex.getMessage());
         }
     }
 
     private static void deployRover() {
+        out.println("\nDeploying new rover");
         out.print("Enter name of rover: ");
         String name = scanner.nextLine();
-        out.print("Enter location of rover: ");
+        out.print("Enter position of rover: ");
         String location = scanner.nextLine();
 
         try {
             Rover rover = commandCentre.deployRover(name, location);
-            out.println("\nRover Deployed Successfully!");
+            out.println("\nRover deployed successfully!");
             printRoverLocation(rover);
         } catch (Exception ex) {
             out.println(ex.getMessage());
@@ -86,7 +88,7 @@ public class MarsRoverApp {
                 out.println("\nNo rovers deployed");
                 return;
             }
-            out.println("\nDeployed Rovers:");
+            out.println("\nDeployed rovers:");
             for (Rover r : rovers) {
                 out.println("Id: " + r.getId() + ", Name: " + r.getName() + ", Coordinates: "
                         + r.coordinates() + ", Direction: " + r.getDirection());
